@@ -1,0 +1,37 @@
+# 배달 로봇 로봇 파라미터
+
+# 정량 지표
+lidar_danger_distance: 3.0      # m - LiDAR 위험 거리
+ultrasonic_danger_distance: 1.0 # m - 초음파 위험 거리
+safe_resume_distance: 3.5       # m - 안전 재개 거리
+
+lidar_warning_distance: 4.0     # m - LiDAR 경고 거리
+ultrasonic_warning_distance: 1.5 # m - 초음파 경고 거리
+
+# 초음파 센서 핀 (GPIO BCM)
+ultrasonic:
+  front:
+    trig: 23
+    echo: 24
+  left:
+    trig: 27
+    echo: 22
+  right:
+    trig: 17
+    echo: 18
+
+# LiDAR
+lidar:
+  port: '/dev/ydlidar'
+  baudrate: 128000  # X4 Pro
+
+# 제어 주기
+control:
+  ultrasonic_rate: 20.0  # Hz
+  
+# 센서 범위
+sensor_range:
+  ultrasonic_min: 0.02  # m (2cm)
+  ultrasonic_max: 4.0   # m (400cm)
+  lidar_min: 0.12       # m
+  lidar_max: 10.0       # m
