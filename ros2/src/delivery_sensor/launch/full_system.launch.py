@@ -54,7 +54,7 @@ def generate_launch_description():
     # ========================================
     
     ultrasonic_node = Node(
-        package='sensor',
+        package='delivery_sensor',
         executable='ultrasonic_node',
         name='ultrasonic_node',
         output='screen',
@@ -68,7 +68,7 @@ def generate_launch_description():
     # ========================================
     
     obstacle_detector_node = Node(
-        package='sensor',
+        package='delivery_sensor',
         executable='obstacle_detector_node',
         name='obstacle_detector_node',
         output='screen',

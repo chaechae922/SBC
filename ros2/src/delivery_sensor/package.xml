@@ -3,31 +3,36 @@
 <package format="3">
   <name>delivery_sensor</name>
   <version>0.1.0</version>
-  <description>배달 로봇 센서 패키지 - LiDAR + 초음파 (즉시 발행)</description>
-  
+  <description>배달 로봇 센서 패키지 - LiDAR + 초음파 기반 장애물 감지 (즉시 발행 + 시각화 + 로깅)</description>
+
   <license>MIT</license>
-  
+
+  <!-- 빌드 도구 -->
   <buildtool_depend>ament_python</buildtool_depend>
-  
-  <!-- 의존성 -->
+
+  <!-- ROS2 핵심 의존성 -->
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>geometry_msgs</depend>
-  
-  <!-- YDLidar -->
+  <depend>visualization_msgs</depend>
+
+  <!-- 외부 드라이버 -->
   <exec_depend>ydlidar_ros2_driver</exec_depend>
-  
-  <!-- Python 패키지 -->
+
+  <!-- Python 라이브러리 -->
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>python3-serial</exec_depend>
-  
-  <!-- 테스트 -->
+
+  <!-- 로깅 확장 (선택) -->
+  <exec_depend>rosbag2_py</exec_depend>
+
+  <!-- 테스트 의존성 -->
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
   <test_depend>python3-pytest</test_depend>
-  
+
   <export>
     <build_type>ament_python</build_type>
   </export>

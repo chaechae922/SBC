@@ -2,27 +2,23 @@
 config.py
 
 배달 로봇 설정 파일
-기존 코드에서 재사용
 """
 
 # ============================================================
 # 정량 지표
 # ============================================================
 
-# 정량지표 2: 장애물(사람) 감지-정지 안전성
-LIDAR_DANGER_DISTANCE = 3.0      # m - LiDAR 3m 이하 감지
-ULTRASONIC_DANGER_DISTANCE = 1.0 # m - 초음파 1m 이하 감지
-SAFE_RESUME_DISTANCE = 3.5       # m - 3.5m 이상 재주행
+LIDAR_DANGER_DISTANCE = 3.0       # m - LiDAR 3m 이하 감지
+ULTRASONIC_DANGER_DISTANCE = 1.0  # m - 초음파 1m 이하 감지
+SAFE_RESUME_DISTANCE = 3.5        # m - 3.5m 이상 재주행
 
-# 추가 안전 마진
-LIDAR_WARNING_DISTANCE = 4.0     # m
+LIDAR_WARNING_DISTANCE = 4.0      # m
 ULTRASONIC_WARNING_DISTANCE = 1.5 # m
 
 # ============================================================
 # 센서 핀 설정 (라즈베리파이 GPIO)
 # ============================================================
 
-# 초음파 센서 (HY-SRF05)
 ULTRA_FRONT_TRIG = 23
 ULTRA_FRONT_ECHO = 24
 ULTRA_LEFT_TRIG = 27
@@ -35,13 +31,13 @@ ULTRA_RIGHT_ECHO = 18
 # ============================================================
 
 LIDAR_PORT = '/dev/ydlidar'
-LIDAR_BAUDRATE = 128000  # X4 Pro
+LIDAR_BAUDRATE = 128000  # YDLidar X4 Pro 기준
 
 # ============================================================
 # MCU UART 설정
 # ============================================================
 
-MCU_PORT = '/dev/serial0'  # 라즈베리파이 하드웨어 UART
+MCU_PORT = '/dev/serial0'
 MCU_BAUD = 115200
 
 # ============================================================
@@ -52,28 +48,38 @@ SENSOR_READ_INTERVAL = 0.05  # 20Hz
 STATUS_PRINT_INTERVAL = 1.0  # 1Hz
 
 # ============================================================
-# 센서 융합
+# 센서 융합 / 필터링
 # ============================================================
 
-# 칼만 필터
 KALMAN_PROCESS_VAR = 0.01
 KALMAN_MEASURE_VAR = 0.05
-
-# 신뢰도
 MIN_CONFIDENCE = 0.5
 
 # ============================================================
-# 장애물 분석
+# 장애물 분석 / 동적 판단
 # ============================================================
 
-MIN_DISTANCE_CHANGE = 0.05  # m (속도 계산 최소 변화)
-VELOCITY_THRESHOLD = 0.1    # m/s (동적 판단)
-TTC_WARNING = 5.0           # 초 (충돌 시간 경고)
+MIN_DISTANCE_CHANGE = 0.05   # m
+VELOCITY_THRESHOLD = 0.1     # m/s
+TTC_WARNING = 5.0            # 초 (Time-To-Collision 경고)
 
 # ============================================================
 # 안전 제어
 # ============================================================
 
-SLOW_SPEED_RATIO = 0.3      # 경고 시 30% 속도
-DECELERATION_RATE = 2.0     # m/s^2
-MIN_STOP_DURATION = 0.5     # 초 (최소 정지 시간)
+SLOW_SPEED_RATIO = 0.3       # 경고 시 속도 30%
+DECELERATION_RATE = 2.0      # m/s²
+MIN_STOP_DURATION = 0.5      # 초 (최소 정지 시간)
+
+# ============================================================
+# ROS2 시각화 & 로깅 옵션 (추가)
+# ============================================================
+
+LOG_DIR = "logs"              # 로그 파일 저장 폴더
+LOG_PREFIX_ULTRA = "ros2_ultra_log"
+LOG_PREFIX_OBSTACLE = "ros2_obstacle_log"
+
+RVIZ_FRAME = "base_link"      # RViz 기준 좌표 프레임
+MARKER_LIFETIME = 1.0         # 초 (Marker 지속 시간)
+MARKER_SIZE = 0.15            # m (Sphere 크기)
+MARKER_COLOR = (0.0, 0.8, 1.0, 0.6)  # RGBA (파란색)

@@ -145,7 +145,7 @@ echo ""
 echo -e "${YELLOW}[5/8] ROS2 워크스페이스 생성 중...${NC}"
 
 # 워크스페이스 디렉토리
-WS_DIR="$HOME/ros2_ws"
+WS_DIR="$HOME/delivery_bot/sbc/ros2"
 
 if [ -d "$WS_DIR" ]; then
     echo -e "${CYAN}  - 워크스페이스 이미 존재: $WS_DIR${NC}"
